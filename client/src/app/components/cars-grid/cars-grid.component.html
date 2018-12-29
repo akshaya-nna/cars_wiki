@@ -1,3 +1,13 @@
-<p>
-  cars-grid works!
-</p>
+<div class="row">
+    <div class="col-md-5">
+        <app-cards (cardSelected)="selectedCard=$event"></app-cards>
+    </div>
+    <div class="col-md-7">
+        <app-cars-detail *ngIf="selectedCard; else infoText"
+        [card]="selectedCard"
+        ></app-cars-detail>
+        <ng-template #infoText>
+            Please select a Recipe
+        </ng-template>
+    </div>
+</div>
