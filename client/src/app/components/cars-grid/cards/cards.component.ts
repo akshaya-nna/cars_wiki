@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Card } from '../../../shared/card.model';
+import { CardService } from 'src/app/shared/card.service';
 
 @Component({
   selector: 'app-cards',
@@ -8,20 +9,14 @@ import { Card } from '../../../shared/card.model';
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {
-  cards: Card[] = [
-    new Card("ford","flg","MI","100B","sym","fordimg","1927","parent","0000000000","heivj nncijijv jjiejviuejuvierj ncuiviuvje huehuvhuervh"),
-    new Card("fordooo","flg","MI","100B","sym","fordimg","1927","parent","0000000000","jnvjernvv jnvjervje iuwhuihiewi hiurehjvier heiuvheirhvier")
-  ];
+  cards: Card[];
 
-  @Output() cardSelected= new EventEmitter<Card>();
-  constructor() { }
+  constructor(private cardService: CardService) { }
 
   ngOnInit() {
+    this.cards = this.cardService.getCards();
   }
 
-  onSelected(card:Card){
-    this.cardSelected.emit(card);
-  }
-
+  
 
 }

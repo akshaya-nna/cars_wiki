@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { CardsComponent } from './components/cars-grid/cards/cards.component';
 import { SingleCardComponent } from './components/cars-grid/cards/single-card/single-card.component';
 import { CarsDetailComponent } from './components/cars-grid/cars-detail/cars-detail.component';
+import { CardStartComponent } from './components/cars-grid/card-start/card-start.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CarsDetailComponent } from './components/cars-grid/cars-detail/cars-det
     CarsGridComponent,
     CardsComponent,
     SingleCardComponent,
-    CarsDetailComponent
+    CarsDetailComponent,
+    CardStartComponent
   ],
   imports: [
     BrowserModule,

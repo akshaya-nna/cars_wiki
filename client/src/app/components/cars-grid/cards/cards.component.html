@@ -1,8 +1,8 @@
 <div class="row">
 <div class="col-xs-12">
-<app-single-card *ngFor="let card of cards"
+<app-single-card *ngFor="let card of cards; let i = index"
 [card]="card"
-(selectedCard)="onSelected(card)"
+[index]="i"
 ></app-single-card>
 </div>
 </div>

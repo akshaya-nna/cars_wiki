@@ -1,13 +1,8 @@
 <div class="row">
     <div class="col-md-5">
-        <app-cards (cardSelected)="selectedCard=$event"></app-cards>
+        <app-cards></app-cards>
     </div>
     <div class="col-md-7">
-        <app-cars-detail *ngIf="selectedCard; else infoText"
-        [card]="selectedCard"
-        ></app-cars-detail>
-        <ng-template #infoText>
-            Please select a Recipe
-        </ng-template>
+        <router-outlet></router-outlet>
     </div>
 </div>
