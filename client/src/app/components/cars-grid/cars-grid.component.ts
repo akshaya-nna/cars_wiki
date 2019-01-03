@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cars-grid.component.css']
 })
 export class CarsGridComponent implements OnInit {
-
+  
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
 
 }
