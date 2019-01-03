@@ -1,16 +1,16 @@
 export class Card {
-   public brand: String;
-   public flagship: String;
-   public location: String;
-   public revenue?: String;
-   public symbol: String;
-   public carImg: String;
-   public year: String;
-   public parentOrg?: String;
-   public csnum?: String;
-   public description?: String;
+   public brand: string;
+   public flagship: string;
+   public location: string;
+   public revenue?: string;
+   public symbol: string;
+   public carImg: string;
+   public year: string;
+   public parentOrg?: string;
+   public csnum?: string;
+   public description?: string;
 
-   constructor(brnd:String,flg:String,loc:String,rev:String,sym:String,car:String,yr:String,parent:String,csnum:String,desc:String){
+   constructor(brnd:string,flg:string,loc:string,rev:string,sym:string,car:string,yr:string,parent:string,csnum:string,desc:string){
             this.brand=brnd;
             this.flagship=flg;
             this.location=loc;

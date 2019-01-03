@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -10,6 +12,7 @@ import { CardsComponent } from './components/cars-grid/cards/cards.component';
 import { SingleCardComponent } from './components/cars-grid/cards/single-card/single-card.component';
 import { CarsDetailComponent } from './components/cars-grid/cars-detail/cars-detail.component';
 import { CardStartComponent } from './components/cars-grid/card-start/card-start.component';
+import { CarDetailsFormComponent } from './components/car-details-form/car-details-form.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,14 @@ import { CardStartComponent } from './components/cars-grid/card-start/card-start
     CardsComponent,
     SingleCardComponent,
     CarsDetailComponent,
-    CardStartComponent
+    CardStartComponent,
+    CarDetailsFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -15,6 +15,6 @@ export class SingleCardComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
 
 }

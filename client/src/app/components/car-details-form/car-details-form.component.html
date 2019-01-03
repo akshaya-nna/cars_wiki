@@ -1,0 +1,44 @@
+<form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="brand">Brand Name</label>
+    <input type="text" formControlName="brand" class="form-control" id="brand">
+  </div>
+  <div class="form-group">
+    <label for="flagship">Flagship Car</label>
+    <input type="text" formControlName="flagship" class="form-control" id="flagship">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input type="text" formControlName="location" class="form-control" id="location">
+  </div>
+  <div class="form-group">
+    <label for="revenue">Revenue</label>
+    <input type="text" formControlName="revenue" class="form-control" id="revenue">
+  </div>
+  <div class="form-group">
+    <label for="symbol">Symbol Img URL</label>
+    <input type="text" formControlName="symbol" class="form-control" id="symbol">
+  </div>
+  <div class="form-group">
+    <label for="carImg">Flagship Car Img URL</label>
+    <input type="text" formControlName="carImg" class="form-control" id="carImg">
+  </div>
+  <div class="form-group">
+    <label for="year">Year found</label>
+    <input type="text" formControlName="year" class="form-control" id="year">
+  </div>
+  <div class="form-group">
+    <label for="parentOrg">Parent Organization</label>
+    <input type="text" formControlName="parentOrg" class="form-control" id="parentOrg">
+  </div>
+  <div class="form-group">
+      <label for="csnum">Customer Care Number</label>
+      <input type="text" formControlName="csnum" class="form-control" id="csnum">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea formControlName="description" class="form-control" id="description" rows="3"></textarea>
+  </div>
+  <button class="btn btn-primary" type="submit"
+    [disabled]="!carForm.valid">Save</button>
+</form>
