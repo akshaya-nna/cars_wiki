@@ -1,8 +1,6 @@
-<div class="card" style="width: 18rem; cursor:pointer;"
-[routerLink]="[index]"
-routerLinkActive="active">
-  <img class="card-img-top" [src]="card.carImg" [alt]="card.brand">
+<div class="card" style="width: 18rem; cursor:pointer;" [routerLink]="[index]" routerLinkActive="active">
   <img class="card-img-top" [src]="card.symbol" [alt]="card.symbol">
+  <img class="card-img-top" [src]="card.carImg" [alt]="card.brand">
   <div class="card-body">
     <h5 class="card-title">{{card.brand}}</h5>
     <p class="card-text">{{card.description}}</p>
@@ -12,8 +10,7 @@ routerLinkActive="active">
     <li class="list-group-item">{{card.location}}</li>
     <li class="list-group-item">{{card.revenue}}</li>
     <li class="list-group-item">{{card.year}}</li>
-    <li class="list-group-item">{{card.parentOrg}}</li>
+    <li class="list-group-item" *ngIf="card.parentOrg">{{card.parentOrg}}</li>
     <li class="list-group-item">{{card.csnum}}</li>
-  </ul>    
+  </ul>
 </div>
-

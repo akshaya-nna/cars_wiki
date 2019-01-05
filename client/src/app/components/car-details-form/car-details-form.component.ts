@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CardService } from 'src/app/shared/card.service';
 import { Subscription } from 'rxjs';
+import { HttpService } from 'src/app/shared/http.service';
+import { Card } from 'src/app/shared/card.model';
 
 @Component({
   selector: 'app-car-details-form',
@@ -16,10 +18,11 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
   carForm: FormGroup;
 
   constructor(private cardService: CardService,
-    private router: Router) { }
+    private router: Router,
+    private httpService: HttpService) { }
 
   ngOnInit() {
-    this.subscription=this.cardService.onEditMode
+    this.subscription = this.cardService.onEditMode
       .subscribe(
         (id: number) => {
           this.id = id;
@@ -29,16 +32,19 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
     this.initForm();
   }
 
- onSubmit(){
-   if(this.editMode){
-     this.cardService.updateCard(this.id,this.carForm.value);     
-   }else {
-     this.cardService.saveCarDetails(this.carForm.value);     
-   }
-   this.editMode = false;
-   this.router.navigate(['cars-grid'])
+  onSubmit() {
+    if (this.editMode) {
+      this.cardService.updateCard(this.id, this.carForm.value);
+    } else {
 
- }
+      this.httpService.saveCard(this.carForm.value)
+        .subscribe((newcar: Card) => {
+          console.log(newcar)
+          this.router.navigate(['cars-grid']);
+        });
+    }
+    this.editMode = false;
+  }
 
   private initForm() {
     let brand = '';
@@ -63,7 +69,7 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
       year = card.year;
       parentOrg = card.parentOrg;
       csnum = card.csnum;
-      description = card.description;      
+      description = card.description;
     }
 
     this.carForm = new FormGroup({
@@ -71,7 +77,7 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
       'flagship': new FormControl(flagship, Validators.required),
       'location': new FormControl(location, Validators.required),
       'revenue': new FormControl(revenue),
-      'symbol': new FormControl(symbol,Validators.required),
+      'symbol': new FormControl(symbol, Validators.required),
       'carImg': new FormControl(carImg, Validators.required),
       'year': new FormControl(year, Validators.required),
       'parentOrg': new FormControl(parentOrg),

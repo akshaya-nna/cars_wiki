@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Card } from 'src/app/shared/card.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CardService } from 'src/app/shared/card.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cars-detail',
   templateUrl: './cars-detail.component.html',
   styleUrls: ['./cars-detail.component.css']
 })
-export class CarsDetailComponent implements OnInit {
+export class CarsDetailComponent implements OnInit, OnDestroy {
   card: Card;
   id: number;
+  subscription: Subscription;
 
   constructor(private route: ActivatedRoute,
     private cardService: CardService,
@@ -24,6 +26,10 @@ export class CarsDetailComponent implements OnInit {
           this.card = this.cardService.getCard(this.id);
         }
       );
+    this.subscription = this.cardService.cardsChanged
+        .subscribe((cards)=>{
+            this.card = cards[this.id];
+        })
   }
 
   onEdit() {
@@ -34,6 +40,10 @@ export class CarsDetailComponent implements OnInit {
   onDelete() {
     this.cardService.deleteCard(this.id);
     this.router.navigate(['cars-grid']);
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

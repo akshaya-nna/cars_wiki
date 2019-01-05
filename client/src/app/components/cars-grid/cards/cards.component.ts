@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Card } from '../../../shared/card.model';
 import { CardService } from 'src/app/shared/card.service';
 import { Subscription } from 'rxjs';
+import { HttpService } from 'src/app/shared/http.service';
 
 @Component({
   selector: 'app-cards',
@@ -13,16 +14,19 @@ export class CardsComponent implements OnInit, OnDestroy {
   cards: Card[];
   subscription: Subscription;
 
-  constructor(private cardService: CardService) { }
+  constructor(private cardService: CardService,
+    private httpService: HttpService) { }
 
   ngOnInit() {
+    this.httpService.getCards();
+
     this.subscription = this.cardService.cardsChanged
       .subscribe(
         (cards: Card[]) => {
           this.cards = cards;
         }
       );
-    this.cards = this.cardService.getCards();
+    // this.cards = this.cardService.getCards();
   }
 
   ngOnDestroy() {
