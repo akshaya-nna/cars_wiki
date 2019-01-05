@@ -1,4 +1,5 @@
 export class Card {
+   public _id:any;
    public brand: string;
    public flagship: string;
    public location: string;
@@ -10,7 +11,8 @@ export class Card {
    public csnum?: string;
    public description?: string;
 
-   constructor(brnd:string,flg:string,loc:string,rev:string,sym:string,car:string,yr:string,parent:string,csnum:string,desc:string){
+   constructor(id:string,brnd:string,flg:string,loc:string,rev:string,sym:string,car:string,yr:string,parent:string,csnum:string,desc:string){
+            this._id=id;
             this.brand=brnd;
             this.flagship=flg;
             this.location=loc;

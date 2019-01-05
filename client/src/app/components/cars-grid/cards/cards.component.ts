@@ -18,7 +18,10 @@ export class CardsComponent implements OnInit, OnDestroy {
     private httpService: HttpService) { }
 
   ngOnInit() {
-    this.httpService.getCards();
+    this.httpService.getCards()
+      .subscribe((cars: Card[]) => {
+        this.cardService.setAllCards(cars);        
+      });    
 
     this.subscription = this.cardService.cardsChanged
       .subscribe(
@@ -28,6 +31,10 @@ export class CardsComponent implements OnInit, OnDestroy {
       );
     // this.cards = this.cardService.getCards();
   }
+
+  // emitClick(index: number){
+  //   this.cardService.onEditMode.next(index);
+  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

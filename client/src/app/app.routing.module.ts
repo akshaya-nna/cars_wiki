@@ -12,7 +12,8 @@ const appRoutes:Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'cars-grid', component: CarsGridComponent, children:[
         { path: '', component: CardStartComponent},
-        { path: ':id', component: CarsDetailComponent}
+        { path: ':id', component: CarsDetailComponent},
+        { path: ':id/edit', component: CarDetailsFormComponent }
     ] },
     { path:'form', component: CarDetailsFormComponent}
 ];

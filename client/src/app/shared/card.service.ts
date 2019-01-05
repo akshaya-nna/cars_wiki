@@ -15,10 +15,18 @@ export class CardService {
   ];
 
   constructor() { }
+  setAllCards(cards :Card[]){
+    this.cards = cards;
+    this.cardsChanged.next(this.cards);
+  }
 
   setCards(card: Card) {
     this.cards.push(card);
     this.cardsChanged.next(this.cards);
+  }
+
+  getCards(){
+    return this.cards;
   }
 
   getCard(index: number) {

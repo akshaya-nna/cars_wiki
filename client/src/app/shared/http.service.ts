@@ -9,31 +9,27 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-
+  
   constructor(private httpClient: HttpClient,
     private cardService: CardService) { }
 
-  getCards() {    
+  getCards() {
     return this.httpClient.get<Card[]>('http://localhost:3000/carswiki')
       // .pipe(map((cars)=> {}      
-      .subscribe(
-        (cars: Card[]) => {
-          if (cars && cars.length) {
-            for (let car of cars) {
-              this.cardService.setCards(car);
-            }
-            this.cardService.cardsChanged.next(cars);
-          }
-        }
-      );
+     
   }
-
-  // editCard(card: Card){
-  //   return this.httpClient.put<Card>('http://localhost:3000/carswiki', card)
-  // }
 
   saveCard(card: Card): Observable<Card> {
     return this.httpClient.post<Card>('http://localhost:3000/carswiki', card)
   }
+
+  editCard(card: Card, id:string){
+    return this.httpClient.put<Card>('http://localhost:3000/carswiki/'+id, card)
+  }
+
+  deleteCard(id: string ){
+    return this.httpClient.delete<Card>('http://localhost:3000/carswiki/'+id)
+  }
+  
 
 }

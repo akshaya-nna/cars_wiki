@@ -39,7 +39,7 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
 
       this.httpService.saveCard(this.carForm.value)
         .subscribe((newcar: Card) => {
-          console.log(newcar)
+          this.cardService.setCards(newcar);
           this.router.navigate(['cars-grid']);
         });
     }
