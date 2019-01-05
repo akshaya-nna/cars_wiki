@@ -12,7 +12,7 @@ import { CardsComponent } from './components/cars-grid/cards/cards.component';
 import { SingleCardComponent } from './components/cars-grid/cards/single-card/single-card.component';
 import { CarsDetailComponent } from './components/cars-grid/cars-detail/cars-detail.component';
 import { CardStartComponent } from './components/cars-grid/card-start/card-start.component';
-import { CarDetailsFormComponent } from './components/car-details-form/car-details-form.component';
+import { CarDetailsFormComponent } from './components/cars-grid/car-details-form/car-details-form.component';
 
 @NgModule({
   declarations: [

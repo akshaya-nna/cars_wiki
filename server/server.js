@@ -93,7 +93,7 @@ app.put('/carswiki/:id', (req, res) => {
         if(!car){
             return res.status(404).send();
         }
-        res.send({car});
+        res.send(car);
     }).catch((e)=>{
         res.status(400).send(e);
     });

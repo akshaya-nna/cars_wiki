@@ -7,7 +7,7 @@ import { Subject, ReplaySubject } from 'rxjs';
 })
 export class CardService {
   cardsChanged = new Subject<Card[]>();
-  onEditMode = new ReplaySubject<number>();
+  // onEditMode = new ReplaySubject<number>();
 
   private cards: Card[] = [
     // new Card("ford","flg","MI","100B","sym","fordimg","1927","parent","0000000000","heivj nncijijv jjiejviuejuvierj ncuiviuvje huehuvhuervh"),

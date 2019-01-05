@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { CardService } from 'src/app/shared/card.service';
-import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/shared/http.service';
 import { Card } from 'src/app/shared/card.model';
 
@@ -11,32 +10,37 @@ import { Card } from 'src/app/shared/card.model';
   templateUrl: './car-details-form.component.html',
   styleUrls: ['./car-details-form.component.css']
 })
-export class CarDetailsFormComponent implements OnInit, OnDestroy {
+export class CarDetailsFormComponent implements OnInit {
   id: number;
-  editMode = false;
-  subscription: Subscription;
+  urlId: string;
+  editMode = false; 
   carForm: FormGroup;
 
   constructor(private cardService: CardService,
+    private route: ActivatedRoute,
     private router: Router,
     private httpService: HttpService) { }
 
   ngOnInit() {
-    this.subscription = this.cardService.onEditMode
-      .subscribe(
-        (id: number) => {
-          this.id = id;
-          this.editMode = true;
-        }
-      );
-    this.initForm();
+        this.route.params
+        .subscribe((params : Params)=>{
+            this.id = params['id'];                        
+            this.editMode = params['id'] != null;  
+            if(this.editMode){
+              this.urlId = this.cardService.getCard(this.id)._id;
+            }          
+            this.initForm();
+        });   
   }
 
   onSubmit() {
     if (this.editMode) {
-      this.cardService.updateCard(this.id, this.carForm.value);
+      this.httpService.editCard(this.carForm.value, this.urlId )
+        .subscribe((editedCard : Card)=>{
+          this.cardService.updateCard(this.id, editedCard);
+          this.router.navigate(['cars-grid']);
+        });      
     } else {
-
       this.httpService.saveCard(this.carForm.value)
         .subscribe((newcar: Card) => {
           this.cardService.setCards(newcar);
@@ -85,9 +89,4 @@ export class CarDetailsFormComponent implements OnInit, OnDestroy {
       'description': new FormControl(description)
     });
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
 }

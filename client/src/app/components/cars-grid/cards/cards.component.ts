@@ -4,6 +4,7 @@ import { Card } from '../../../shared/card.model';
 import { CardService } from 'src/app/shared/card.service';
 import { Subscription } from 'rxjs';
 import { HttpService } from 'src/app/shared/http.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
@@ -15,7 +16,9 @@ export class CardsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(private cardService: CardService,
-    private httpService: HttpService) { }
+    private httpService: HttpService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.httpService.getCards()
@@ -28,13 +31,12 @@ export class CardsComponent implements OnInit, OnDestroy {
         (cards: Card[]) => {
           this.cards = cards;
         }
-      );
-    // this.cards = this.cardService.getCards();
+      );    
   }
-
-  // emitClick(index: number){
-  //   this.cardService.onEditMode.next(index);
-  // }
+  
+  newCar(){
+    this.router.navigate(['new'] ,{relativeTo:this.route}); 
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

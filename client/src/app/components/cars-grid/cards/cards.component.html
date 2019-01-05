@@ -1,4 +1,5 @@
-<div class="row" >
+<button class="btn btn-primary" (click)="newCar()">New Car</button>
+<div class="row" >    
 <div class="col-xs-12" >
 <app-single-card *ngFor="let card of cards; let i = index"
 [card]="card"

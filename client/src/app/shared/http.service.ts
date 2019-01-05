@@ -9,27 +9,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpService {
-  
+
   constructor(private httpClient: HttpClient,
     private cardService: CardService) { }
 
   getCards() {
     return this.httpClient.get<Card[]>('http://localhost:3000/carswiki')
-      // .pipe(map((cars)=> {}      
-     
+    // .pipe(map((cars)=> {}    
   }
 
   saveCard(card: Card): Observable<Card> {
     return this.httpClient.post<Card>('http://localhost:3000/carswiki', card)
   }
 
-  editCard(card: Card, id:string){
-    return this.httpClient.put<Card>('http://localhost:3000/carswiki/'+id, card)
+  editCard(card: Card, id: string) {
+    return this.httpClient.put<Card>('http://localhost:3000/carswiki/' + id, card)
   }
 
-  deleteCard(id: string ){
-    return this.httpClient.delete<Card>('http://localhost:3000/carswiki/'+id)
+  deleteCard(id: string) {
+    return this.httpClient.delete<Card>('http://localhost:3000/carswiki/' + id)
   }
-  
+
 
 }
